@@ -1,0 +1,147 @@
+@font-face {
+	font-family: "Montserrat";
+	src: url(assets/fonts/Montserrat/Montserrat-Regular.ttf);
+}
+
+body {
+	background-color: #F8F8F8 !important; /* override Bootstrap background color */
+	font-family: "Montserrat" !important;
+}
+p {
+	font-size: 16px;
+}
+
+p.uppercase {
+	color: #B2B2B2;
+	text-transform: uppercase;
+}
+
+.container {
+	margin-top: 50px;
+	/*width: 60%;*/
+}
+
+.row.resultsFilter {
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+/*DATATABLE OVERRIDES*/
+
+#swDataTable .sorting_disabled {
+	display: none;
+	border: none;
+}
+
+input.form-control {
+	font-size: 18px;
+	height: 58px;
+	border-radius: 4px !important;
+	outline: none !important;
+}
+
+.dtHeadFont {
+	color: #333;
+	font-size: 18px;
+}
+
+.dtSubFont {
+	color: #B2B2B2;
+}
+
+*:focus {
+   outline: 0;
+}
+
+/*BOOTSTRAP OVERRIDES*/
+
+.well {
+	border: none !important;
+	background-image: none !important;
+	background-color: #fff !important;
+	padding: 10px !important;
+}
+
+#swDataTable {
+	border: none;
+}
+
+button {
+	width: 100px; 
+    height: 58px;
+    border: none;
+    border-radius: 4px !important;
+	text-shadow: none !important;
+	color: #fff !important;
+	border-color: none !important;
+	background-image: none !important;
+	background-color: #4d9df9 !important;
+	margin-left: 14px !important;
+}
+
+.placeholder {
+	font-size: 40px !important;
+}
+
+.vaderProfPic {
+	height: 90px;
+	margin-top: 120px !important;
+	display: block;
+	margin: auto;
+}
+
+.emptyStateText {
+	color: #B2B2B2;
+	text-align: center;
+	margin-bottom: 110px;
+}
+
+select {
+	width: 170px;
+	background-color: #fff; 
+}
+
+.select-box-svg__inner {
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    line-height: 1em;
+    margin: 0;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+
+.icon--arrow {
+    z-index:1;
+    position:absolute;
+    right:10px;
+    bottom:16px;
+    display:block;
+    padding:0;
+}
+
+.select-box-svg__inner select option {
+    display:block;
+    line-height:1.5;
+    font-size:1em;
+    /*border:none;*/
+}
+
+.select-box-svg__inner select {
+    position:relative;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-color:none;
+    background-image: none;
+    border: none;
+    box-shadow: none;
+    font-size: 1em;
+    padding: 16px;
+    display: block;
+    transition: background 0.4s ease;
+}
+.select-box-svg__label ~ .select-box-svg__inner select {
+    width: 115%;
+}

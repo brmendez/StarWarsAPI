@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Subsplash Challenge</title>
+    <!-- <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=font1|font2|etc' type='text/css'> -->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" type="text/javascript"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.7.2/less.min.js"></script> -->
+    <link rel="stylesheet" href="stylesheet.css" type="text/css">
+    <!-- <link rel="stylesheet/less" href="styles.less" type="text/css"> -->
+  </head>
+  <body>
+
+    <div class="container">
+
+	   <div class="row">
+	      <div class="well">
+	         <div class="input-group"> 
+	         	<input class="character form-control" placeholder="Search by character name"> 
+	         	<span class="input-group-btn"> <button id="search_character" class="btn btn-default" type="button">Search</button> </span> 
+	         </div>
+	      </div>
+    	</div>
+
+      <div class="row resultsFilter">
+	    <div class="col-xs-6 col-sm-6 col-md-6">
+	        <p class="uppercase"><span class="results">0 Results</span></p>
+	    </div>
+	    <div class="col-xs-6 col-sm-6 col-md-6">
+	    	<div class="select-box-svg__inner">
+		      <select id="gender_dropdown" style="float:right;">
+		        <option selected="selected" value="all">Filter by Gender </option> <img class="" src="assets/graphics/chevron--down.svg">
+		        <option value="male">Male</option>
+		        <option value="female">Female</option>
+		      </select>
+		      <img class="icon--arrow" src="assets/graphics/chevron--down.svg">
+		     </div>
+	    </div>
+	   </div>
+
+	   <div class="dataWell">
+		   <div class="row">
+		    <!-- DATATABLE -->
+		    <div class="well">
+		    	<!-- Applied inline style based off DataTables documentation. https://datatables.net/examples/basic_init/flexible_width.html -->
+		      <table id="swDataTable" class="row-border" style="width:100%;">
+		        <thead>
+		            <tr>
+		                <th></th>
+		                <th></th>
+		                <th></th>
+		                <th></th>
+		            </tr>
+		        </thead>
+
+		        <tbody>
+		        </tbody>
+		      </table>
+		    </div>
+		   </div>
+		 </div>
+
+	   <div class="emptyState">
+	   	<div class="row">
+		   	<div class="well">
+	   			<img class="vaderProfPic" src="assets/graphics/vader-icon.svg" alt="darth vader icon">
+	   			<div class="row">
+	   				<h3 class="emptyStateText">Search by character name</h3>
+	   			</div>
+		   	</div>
+		   </div>
+	   </div>
+
+    </div>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="js/swSearch.js"></script>
+
+
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  
+  </body>
+</html>
+
+<script>
+
+  var dataTable = $('#swDataTable').DataTable({
+      "ordering": false
+    , "paging":   false
+    , "bInfo" :   false
+    , "bFilter":  false
+    , "searching": true
+    , "dom": "t"
+
+    , "data": [] 
+    , "language": {
+      "emptyTable": "These aren't the droids you're looking for"
+    }
+    , "columns": [
+                  { "data": "name", "className": "dtHeadFont" },
+                  { "data": "gender", "className": "dtSubFont" },
+                  { "data": "hair_color", "className": "dtSubFont" },
+                  { "data": "eye_color", "className": "dtSubFont" },
+    ]
+    , "columnDefs": [
+
+        {
+          "render": function ( data, type, row ) {
+	           return row.name + '<br />' 
+     								 	+ ' ' + row.gender
+										+ ' &#8226; ' + row.hair_color + ' hair'
+										+ ' &#8226; ' + row.eye_color + ' eyes';
+          },
+          "targets": 0
+        }
+        , {"targets": [1,2,3], "visible": false}
+    ]
+
+  });
+	if (dataTable.data().length == 0) {
+		$('.dataWell').hide();
+	}
+</script>
