@@ -27,6 +27,10 @@ function get_characters(query) {
 
 		maleOption.text('Male ' + '(' + maleCount + ')');
 		femaleOption.text('Female ' + '(' + femaleCount + ')');
+
+		// Reset dropdown and draw table
+		$('#gender_dropdown').val('null');
+		dataTable.columns(1).search( '' ).draw();
 		
 		dataTable.clear().draw();
 		dataTable.rows.add(res.results).draw();
@@ -59,6 +63,7 @@ $("input:text:visible:first").focus();
 $('#search_character').click(function(e) {
 	e.preventDefault();
 
+	$('#gender_dropdown').val('null');
 	$("#gender_dropdown").val($("#gender_dropdown option:first").val());
 	dataTable.columns().data().search('').draw();
 	var character = $('input.character').val();
@@ -69,7 +74,7 @@ $('#gender_dropdown').change(function(){
 
 	var searchVal = $(this).val();
 
-	if (searchVal == 'all') {
+	if (searchVal == 'null') {
 		return dataTable.column(1).search('').draw();
 	}
 	
