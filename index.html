@@ -16,9 +16,9 @@
 
 	   <div class="row">
 	      <div class="well">
-	         <div class="input-group"> 
-	         	<input class="character form-control" placeholder="Is this the Droid you're looking for?"> 
-	         	<span class="input-group-btn"> <button id="search_character" class="btn btn-default" type="button">Search</button> </span> 
+	         <div class="input-group">
+	         	<input id="search_input" class="character form-control" placeholder="Is this the Droid you're looking for?">
+	         	<span class="input-group-btn"> <button id="search_character" class="btn btn-default" type="button">Search</button> </span>
 	         </div>
 	      </div>
     	</div>
@@ -88,7 +88,7 @@
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-  
+
   </body>
 </html>
 
@@ -102,7 +102,7 @@
     , "searching": true
     , "dom": "t"
 
-    , "data": [] 
+    , "data": []
     , "language": {
       "emptyTable": "These aren't the droids you're looking for"
     }
@@ -116,9 +116,10 @@
 
         {
           "render": function ( data, type, row ) {
-	           return row.name + '<br />' 
+            let hairColor = row.hair_color === 'none' ? 'no hair' : row.hair_color + ' hair';
+	           return row.name + '<br />'
      								 	+ ' ' + row.gender
-										+ ' &#8226; ' + row.hair_color + ' hair'
+										+ ' &#8226; ' + hairColor
 										+ ' &#8226; ' + row.eye_color + ' eyes';
           },
           "targets": 0
