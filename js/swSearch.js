@@ -7,7 +7,7 @@ function get_characters(query) {
 	var femaleCount = 0;
 	var maleOption = $('#gender_dropdown option[value="male"]');
 	var femaleOption = $('#gender_dropdown option[value="female"]');
-	
+
 	if (!query) {
 		console.log('query is blank');
 		$('.dataWell').hide();
@@ -20,7 +20,7 @@ function get_characters(query) {
 	}
 
 	$.ajax({
-	  	url: "https://swapi.co/api/people/" + "?search=" + query
+	  	url: "https://swapi.dev/api/people/" + "?search=" + query
 	  , data: query
 
 	}).done(function (res) {
@@ -31,7 +31,7 @@ function get_characters(query) {
 		// Reset dropdown and draw table
 		$('#gender_dropdown').val('null');
 		dataTable.columns(1).search( '' ).draw();
-		
+
 		dataTable.clear().draw();
 		dataTable.rows.add(res.results).draw();
 
@@ -42,15 +42,15 @@ function get_characters(query) {
 
 		$.each(res.results, function(index, value) {
 
-			if (value['gender'] === 'male') {	
+			if (value['gender'] === 'male') {
 				maleCount++;
 				$('#gender_dropdown option[value="male"]').text('Male ' + '(' + maleCount + ')');
 			}
 
-			if (value['gender'] === 'female') {	
+			if (value['gender'] === 'female') {
 				femaleCount++;
 				$('#gender_dropdown option[value="female"]').text('Female ' + '(' + femaleCount + ')');
-				
+
 			}
 
 		});
@@ -70,6 +70,12 @@ $('#search_character').click(function(e) {
 	get_characters(character)
 });
 
+$("#search_input").on('keyup', function (e) {
+  if (e.keyCode === 13) {
+		$('#search_character').click();
+  }
+});
+
 $('#gender_dropdown').change(function(){
 
 	var searchVal = $(this).val();
@@ -77,7 +83,7 @@ $('#gender_dropdown').change(function(){
 	if (searchVal == 'null') {
 		return dataTable.column(1).search('').draw();
 	}
-	
+
 	$.fn.dataTable.util.escapeRegex(searchVal);
 
 	// DataTables search( input [, regex = false[ , smart = true[ , caseInsen = true ]]] )
